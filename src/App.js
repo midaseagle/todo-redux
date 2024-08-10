@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import AddTask from './components/AddTask';
+import TaskList from './components/TaskList';
+import DoneTasks from './components/DoneTasks';
+import ThemeToggle from './components/ThemeToggle';
+import { useSelector } from 'react-redux';
 
-function App() {
+const App = () => {
+  const theme = useSelector(state => state.tasks.theme);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ background: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#000' : '#fff' }}>
+      <h1>Todo App</h1>
+      <ThemeToggle />
+      <AddTask />
+      <TaskList />
+      <DoneTasks />
     </div>
   );
-}
+};
 
 export default App;
